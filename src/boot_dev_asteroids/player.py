@@ -1,7 +1,7 @@
 import pygame
 
-from boot_dev_asteroids.circleshape import CircleShape
 from boot_dev_asteroids import constants
+from boot_dev_asteroids.circleshape import CircleShape
 
 
 class Player(CircleShape):
@@ -22,6 +22,10 @@ class Player(CircleShape):
     def rotate(self, dt):
         self.rotation += constants.PLAYER_TURN_SPEED * dt
 
+    def move(self, dt):
+        forward = pygame.Vector2(0, 1).rotate(self.rotation)
+        self.position += forward * constants.PLAYER_SPEED * dt
+
     def draw(self, screen):
         pygame.draw.polygon(
             surface=screen, color="white", points=self.triangle(), width=2
@@ -35,3 +39,9 @@ class Player(CircleShape):
 
         if keys[pygame.K_d]:
             self.rotate(dt)
+
+        if keys[pygame.K_w]:
+            self.move(dt)
+
+        if keys[pygame.K_s]:
+            self.move(-1 * dt)

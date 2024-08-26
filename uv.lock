@@ -10,7 +10,10 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pygame", specifier = "==2.6.0" }]
+requires-dist = [
+    { name = "boot-dev-asteroids", editable = "." },
+    { name = "pygame", specifier = "==2.6.0" },
+]
 
 [[package]]
 name = "pygame"

@@ -1,4 +1,5 @@
 import pygame
+
 from boot_dev_asteroids import constants, player
 
 
@@ -11,6 +12,11 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
 
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    player.Player.containers = (updateable, drawable)
+
     _player = player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
 
     while True:
@@ -20,8 +26,11 @@ def main():
 
         screen.fill("black")
 
-        _player.update(dt)
-        _player.draw(screen)
+        for u in updateable:
+            u.update(dt)
+
+        for d in drawable:
+            d.draw(screen)
 
         pygame.display.flip()
         dt = clock.tick(60) / 1000

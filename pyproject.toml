@@ -6,8 +6,15 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "pygame==2.6.0",
+    "boot-dev-asteroids",
 ]
+
+[project.scripts]
+asteroids = "boot_dev_asteroids.__main__:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.uv.sources]
+boot-dev-asteroids = { workspace = true }
